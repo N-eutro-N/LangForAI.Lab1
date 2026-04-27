@@ -1,3 +1,6 @@
+import random
+from string import ascii_lowercase, ascii_uppercase
+
 def custom_all(element):
     for item in element:
         if not isinstance(item, (int, float)):
@@ -55,8 +58,19 @@ def run_task_2():
         print(f"  {next(cyclic_iter)}", end=" ")
     print()
 
+def password_generator(n):
+    chars = ascii_lowercase + ascii_uppercase + "0123456789!?@#$*"
+    while True:
+        password = "".join(random.choice(chars) for _ in range(n))
+        yield password
+
 def run_task_3():
-    print("\nЗадача 3: Генератор паролей")
+    print("\nЗадача 3: Генератор паролей (N=16)")
+    n = 16
+    gen = password_generator(n)
+    print(f"Генерация 5 паролей длиной {n}:")
+    for i in range(5):
+        print(f"  Пароль {i+1}: {next(gen)}")
 
 def run_task_4():
     print("\nЗадача 4: Числа Фибоначчи")
@@ -66,7 +80,7 @@ def main():
         print("\n        МЕНЮ")
         print("1. Задача 1: Список (any, custom_all, sorted)")
         print("2. Задача 2: Циклический итератор для кортежа (CyclicTupleIterator)")
-        print("3. Задача 3: Генератор паролей")
+        print("3. Задача 3: Генератор паролей (N=16)")
         print("4. Задача 4: Числа Фибоначчи")
         print("0. Выход")
 
