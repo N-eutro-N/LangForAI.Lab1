@@ -72,8 +72,22 @@ def run_task_3():
     for i in range(5):
         print(f"  Пароль {i+1}: {next(gen)}")
 
+class FibonacciSequence:
+    def generate(self, n):
+        a, b = 1, 1
+        count = 0
+        while count < n:
+            yield a
+            a, b = b, a + b
+            count += 1
+
 def run_task_4():
-    print("\nЗадача 4: Числа Фибоначчи")
+    print("\nЗадача 4: FibonacciSequence")
+    n = 15
+    fib_seq = FibonacciSequence()
+    print(f"Первые {n} чисел Фибоначчи:")
+    result = ", ".join(str(num) for num in fib_seq.generate(n))
+    print(f"  {result}")
 
 def main():
     while True:
@@ -81,7 +95,7 @@ def main():
         print("1. Задача 1: Список (any, custom_all, sorted)")
         print("2. Задача 2: Циклический итератор для кортежа (CyclicTupleIterator)")
         print("3. Задача 3: Генератор паролей (N=16)")
-        print("4. Задача 4: Числа Фибоначчи")
+        print("4. Задача 4: Класс FibonacciSequence")
         print("0. Выход")
 
         choice = input("Выберите задачу (0-4): ")
